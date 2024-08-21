@@ -1,6 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://ide5ptcymnui"]
+[gd_scene load_steps=5 format=3 uid="uid://ide5ptcymnui"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_125sq"]
+[ext_resource type="PackedScene" uid="uid://ba3u5wvu2h3fy" path="res://scenes/player.tscn" id="2_bqhvk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhbne"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tfd44"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_125sq")
+
+[node name="Player" parent="." instance=ExtResource("2_bqhvk")]
+position = Vector2(613, 310)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -1.42188)
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 493)
+scale = Vector2(1920, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_uhbne")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_tfd44")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(291, 320)
+scale = Vector2(10, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_uhbne")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_tfd44")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(910, 320)
+scale = Vector2(10, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_uhbne")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_tfd44")
