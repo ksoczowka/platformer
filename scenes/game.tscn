@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ide5ptcymnui"]
+[gd_scene load_steps=6 format=3 uid="uid://ide5ptcymnui"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_125sq"]
 [ext_resource type="PackedScene" uid="uid://ba3u5wvu2h3fy" path="res://scenes/player.tscn" id="2_bqhvk"]
@@ -7,58 +7,76 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tfd44"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3kw2o"]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_125sq")
 
 [node name="Player" parent="." instance=ExtResource("2_bqhvk")]
-position = Vector2(613, 310)
+position = Vector2(200, 252)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -1.42188)
+limit_left = -28
+limit_right = 1221
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 493)
-scale = Vector2(1920, 1)
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(589, 503)
+scale = Vector2(64, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_uhbne")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_tfd44")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(291, 320)
+[node name="Left Platform" type="StaticBody2D" parent="."]
+position = Vector2(180, 320)
 scale = Vector2(10, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Platform"]
 shape = SubResource("RectangleShape2D_uhbne")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+[node name="Sprite2D" type="Sprite2D" parent="Left Platform"]
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_tfd44")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(910, 320)
+[node name="Right Platform" type="StaticBody2D" parent="."]
+position = Vector2(833, 264)
 scale = Vector2(10, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Platform"]
 shape = SubResource("RectangleShape2D_uhbne")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+[node name="Sprite2D" type="Sprite2D" parent="Right Platform"]
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_tfd44")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(615, 464)
-scale = Vector2(10, 1)
+[node name="Action Platform" type="StaticBody2D" parent="."]
+position = Vector2(528, 398)
+scale = Vector2(5, 1)
 collision_layer = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Action Platform"]
 shape = SubResource("RectangleShape2D_uhbne")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+[node name="Sprite2D" type="Sprite2D" parent="Action Platform"]
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_tfd44")
+
+[node name="Left Border" type="Area2D" parent="."]
+position = Vector2(-28, 429)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Border"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_3kw2o")
+
+[node name="Right Border" type="Area2D" parent="."]
+position = Vector2(1221, 454)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Border"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_3kw2o")

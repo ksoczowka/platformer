@@ -9,7 +9,7 @@ var is_action_used: bool = false
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 
-func ray_cast_colliding():
+func mega_jump_action():
 	velocity.y = JUMP_VELOCITY - 500
 
 func _physics_process(delta: float) -> void:
@@ -19,13 +19,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("action") and ray_cast.is_colliding() and not is_on_floor() and not is_action_used:
 		is_action_used = true
-		$AnimationPlayer.play("action_used")
+		$AnimationPlayer.play("mega_jump")
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	if Input.is_action_just_released("jump") and velocity.y < 0:
-		velocity.y = 0
 
 	if Input.is_action_just_released("action"):
 		is_action_used = false
