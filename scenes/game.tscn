@@ -1,13 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://ide5ptcymnui"]
+[gd_scene load_steps=9 format=4 uid="uid://ide5ptcymnui"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_125sq"]
 [ext_resource type="PackedScene" uid="uid://ba3u5wvu2h3fy" path="res://scenes/player.tscn" id="2_bqhvk"]
+[ext_resource type="Texture2D" uid="uid://buwvwl15l4ubi" path="res://assets/textures/tilemaps/blocks.png" id="3_r5ewx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhbne"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tfd44"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3kw2o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5d5ss"]
+texture = ExtResource("3_r5ewx")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_qilg7"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 5
+sources/0 = SubResource("TileSetAtlasSource_5d5ss")
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_125sq")
@@ -21,39 +44,6 @@ limit_left = -28
 limit_right = 1221
 limit_smoothed = true
 position_smoothing_enabled = true
-
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(589, 503)
-scale = Vector2(64, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("RectangleShape2D_uhbne")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_tfd44")
-
-[node name="Left Platform" type="StaticBody2D" parent="."]
-position = Vector2(180, 320)
-scale = Vector2(10, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Platform"]
-shape = SubResource("RectangleShape2D_uhbne")
-
-[node name="Sprite2D" type="Sprite2D" parent="Left Platform"]
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_tfd44")
-
-[node name="Right Platform" type="StaticBody2D" parent="."]
-position = Vector2(833, 264)
-scale = Vector2(10, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Platform"]
-shape = SubResource("RectangleShape2D_uhbne")
-
-[node name="Sprite2D" type="Sprite2D" parent="Right Platform"]
-scale = Vector2(20, 20)
-texture = SubResource("PlaceholderTexture2D_tfd44")
 
 [node name="Action Platform" type="StaticBody2D" parent="."]
 position = Vector2(528, 398)
@@ -80,3 +70,7 @@ position = Vector2(1221, 454)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right Border"]
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_3kw2o")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAA4AAAAAAAAAAAABAA4AAAAAAAAAAAACAA4AAAAAAAAAAAADAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAASAA4AAAAAAAAAAAATAA4AAAAAAAAAAAAVAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAXAA4AAAAAAAAAAAAYAA4AAAAAAAAAAAAZAA4AAAAAAAAAAAAaAA4AAAAAAAAAAAAbAA4AAAAAAAAAAAAcAA4AAAAAAAAAAAAdAA4AAAAAAAAAAAAeAA4AAAAAAAAAAAAfAA4AAAAAAAAAAAAgAA4AAAAAAAAAAAAhAA4AAAAAAAAAAAAiAA4AAAAAAAAAAAAWAA4AAAAAAAAAAAAVAA4AAAAAAAAAAAAUAA4AAAAAAAAAAAAUAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAjAA4AAAAAAAAAAAAkAA4AAAAAAAAAAAAlAA4AAAAAAAAAAAAmAA4AAAAAAAAAAAAnAA4AAAAAAAAAAAAoAA4AAAAAAAAAAAD//w4AAAAAAAAAAAD+/w4AAAAAAAAAAAD9/w4AAAAAAAAAAAAbAA0AAAAAAAAAAAAbAAsAAAACAAAAAAAbAAwAAAAAAAAAAAAaAA0AAAACAAAAAAAcAA0AAAACAAAAAAAEAA0AAAABAAAAAAAIAA0AAAABAAAAABAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAFAAwAAAABAAAAAAAHAAwAAAABAAAAABAGAAwAAAAAAAAAAAATAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAVAAgAAAAAAAAAAAAWAAgAAAAAAAAAAAAXAAgAAAAAAAAAAAAZAAUAAAAAAAAAAAAaAAUAAAAAAAAAAAAbAAUAAAAAAAAAAAAcAAUAAAAAAAAAAAAdAAUAAAAAAAAAAAAeAAUAAAAAAAAAAAAhAAUAAAAAAAAAAAAiAAUAAAAAAAAAAAAjAAUAAAAAAAAAAAAkAAUAAAAAAAAAAAAlAAUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_qilg7")

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 600.0
-const JUMP_VELOCITY = -1200.0
+const JUMP_VELOCITY = -1000.0
 const MASS = 4
 
 var is_action_used: bool = false
