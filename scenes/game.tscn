@@ -50,3 +50,15 @@ shape = SubResource("RectangleShape2D_uhbne")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_tfd44")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(615, 464)
+scale = Vector2(10, 1)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("RectangleShape2D_uhbne")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_tfd44")
