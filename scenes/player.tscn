@@ -1,11 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba3u5wvu2h3fy"]
+[gd_scene load_steps=12 format=3 uid="uid://ba3u5wvu2h3fy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bk3y7"]
+[ext_resource type="Texture2D" uid="uid://bq77q47cvnxrv" path="res://assets/textures/tilemaps/player.png" id="2_wt6bs"]
+[ext_resource type="Texture2D" uid="uid://bmgdcb2mmf633" path="res://assets/textures/tilemaps/action_down.png" id="3_cxacr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgwto"]
+atlas = ExtResource("2_wt6bs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lc338"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgwto")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vybhm"]
+atlas = ExtResource("3_cxacr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glqy2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vybhm")
+}],
+"loop": true,
+"name": &"action_down",
+"speed": 1.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrm5a"]
 size = Vector2(32, 32)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wjgp5"]
+[sub_resource type="Animation" id="Animation_y382r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ActionSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_eboba"]
 resource_name = "action_used"
@@ -24,22 +69,41 @@ tracks/0/keys = {
 "method": &"mega_jump_action"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActionSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3u4kj"]
 _data = {
+"RESET": SubResource("Animation_y382r"),
 "mega_jump": SubResource("Animation_eboba")
 }
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_bk3y7")
 
+[node name="PlayerSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lc338")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="ActionSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 32)
+sprite_frames = SubResource("SpriteFrames_glqy2")
+animation = &"action_down"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vrm5a")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.98023e-08, -2.98023e-08)
-scale = Vector2(32, 32)
-texture = SubResource("PlaceholderTexture2D_wjgp5")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-0.0147047, 0.00946665)
