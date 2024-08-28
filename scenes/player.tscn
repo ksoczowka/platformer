@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ba3u5wvu2h3fy"]
+[gd_scene load_steps=15 format=3 uid="uid://ba3u5wvu2h3fy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bk3y7"]
 [ext_resource type="Texture2D" uid="uid://bq77q47cvnxrv" path="res://assets/textures/tilemaps/player.png" id="2_wt6bs"]
@@ -16,7 +16,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vybhm"]
@@ -51,6 +51,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_eboba"]
 resource_name = "action_used"
@@ -82,9 +94,47 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_bfiqh"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_8eme0"]
+resource_name = "jump_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_sns2h"]
+resource_name = "idle"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3u4kj"]
 _data = {
 "RESET": SubResource("Animation_y382r"),
+"idle": SubResource("Animation_sns2h"),
+"jump_left": SubResource("Animation_8eme0"),
+"jump_right": SubResource("Animation_bfiqh"),
 "mega_jump": SubResource("Animation_eboba")
 }
 
