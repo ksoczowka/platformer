@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cig23d2qswxjk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5tnu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7lve"]
+
+[node name="Mega Jump Block" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w5tnu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l7lve")
