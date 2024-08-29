@@ -64,6 +64,41 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_sns2h"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_8eme0"]
+resource_name = "jump_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_bfiqh"]
+resource_name = "jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, -2),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
 [sub_resource type="Animation" id="Animation_eboba"]
 resource_name = "action_used"
 length = 0.2
@@ -93,41 +128,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
-
-[sub_resource type="Animation" id="Animation_bfiqh"]
-resource_name = "jump"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, -2),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_8eme0"]
-resource_name = "jump_left"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, -2),
-"update": 0,
-"values": [0.0, -6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_sns2h"]
-resource_name = "idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3u4kj"]
 _data = {

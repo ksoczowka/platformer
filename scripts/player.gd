@@ -12,6 +12,8 @@ func mega_jump_action():
 	velocity.y = JUMP_VELOCITY - 500
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor() and velocity.y == 0:
+		$AnimationPlayer.stop()
 	# Handling gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * MASS
@@ -28,6 +30,10 @@ func _physics_process(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		if $PlayerSprite2D.flip_h:
+			$AnimationPlayer.play("jump_left")
+		else:
+			$AnimationPlayer.play("jump_right")
 
 	# Get direction of movement
 	var direction := Input.get_axis("left", "right")
